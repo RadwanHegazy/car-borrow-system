@@ -1,0 +1,243 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+    --var-font:'Cairo',sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+img.bg {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+
+.container {
+    width: 80%;
+    height: 80%;
+    backdrop-filter: blur(30px);
+    border-radius: 30px;
+    background-color: #ffffff13;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .up {
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row-reverse;
+    position: relative;
+}
+
+
+
+
+.up input {
+    width: 200px;
+    height: 35px;
+    direction: rtl;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    font-family: var(--var-font);
+    background-color: #00000040;
+    color: #fff;
+    outline: none;
+}
+
+.up i {
+    border-width: 10px;
+    border-color: transparent #fff transparent transparent;
+    border-style: solid;
+
+}
+
+.up button {
+    width: 50px;
+    height: 35px;
+    font-family: var(--var-font);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #3BA84D;
+}  
+
+.up a {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    color: #4E60FF;
+    font-family: var(--var-font);
+}
+
+
+.container .results {
+    height: 85%;
+    overflow-y: auto;
+    display: flex;
+    gap: 20px;
+    padding: 12px 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.results .card {
+    min-width: 200px;
+    height: 200px;
+    overflow-y: auto;
+    border-radius: 12px;
+    padding: 1rem;
+    gap: 3px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff12;
+
+}
+
+.results .card .col {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px 10px ;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--var-font);
+}
+
+.col small {
+    color: #ABA1A1;
+    font-weight: bold;
+}
+
+.col p  {
+    color: #fff;
+    font-weight: bold;
+}
+
+.results button {
+    width: 80%;
+    margin: auto;
+    height: 30px;
+    font-family: var(--var-font);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #2EC1F8;
+    cursor: pointer;
+}
+
+.overlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    backdrop-filter: blur(70px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--var-font);
+}
+
+
+.overlayer.info, .overlayer.ticket {
+    display: flex;
+}
+
+.overlayer.info .ticket {
+    display: none;
+}
+
+.overlayer.ticket .info {
+    display: none;
+}
+
+
+.overlayer.info .info, .overlayer.ticket .ticket{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.overlayer.ticket .ticket{
+    display:flex;
+}
+
+
+.overlayer h1 {
+    color: #fff;
+    text-align: center;
+}
+
+.overlayer.info input {
+    width: 100%;
+    height: 45px;
+    direction: rtl;
+    padding: 6px 12px;
+    font-family: var(--var-font);
+    border: none;
+    outline: none;
+    background-color: #00000050;
+    color: #ccc;
+}
+
+.overlayer.info button {
+    color: #fff;
+    background-color: #1dc455;
+    font-family: var(--var-font);
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0px 0px 20px #39C96930;
+    cursor: pointer;
+}
+
+
+.overlayer.ticket img {
+    width: 400px;
+    height: auto;
+    object-fit: contain;
+}
+
+
+.overlayer .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: crimson;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(220, 20, 60, 0.705);
+    font-weight: bold;
+}

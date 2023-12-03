@@ -1,0 +1,201 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --var-font:'Cairo',sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.container {
+    width: 90%;
+    backdrop-filter: blur(70px);
+    height: 90%;
+    border-radius: 35px;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 12px;
+    
+}
+
+
+
+.container .right {
+    width: 75%;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.container .cont {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff10;
+    border-radius: 30px;
+    padding: 1rem;
+    overflow-y: auto ;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.container .cont .session {
+    width: 100%;
+    background-color: #ffffff20;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    min-height: 75px;
+}
+
+.cont .session .op {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--var-font);
+    color: #fff;
+}
+
+ .cont .session .status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: crimson;
+}
+
+.cont .session .status.active {
+    background-color: greenyellow;
+}
+
+
+
+.container .left {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.left .win {
+    width: 100%;
+    height: 160px;
+    background-color: #ffffff30;
+    border-radius: 12px;
+    backdrop-filter: blur(30px);
+    display: flex;
+    padding: 6px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.left .win:first-child{
+    height: 230px;
+}
+.win .qrCode {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+}
+
+.win button {
+    width: 100px;
+    height: 35px;
+    font-family: var(--var-font);
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #1C57E1;
+    backdrop-filter: 0px 0px 30px #1C57E150;
+}
+
+
+.win img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.win p {
+    color: #fff;
+    font-weight: bold;
+    font-family: var(--var-font);
+    font-size: 14px;
+}
+
+.btns {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 12px;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.btns a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--var-font);
+    border-radius: 6px;
+    font-size: 12px;
+    text-decoration: none;
+    color: #fff;
+    width: 100px;
+    height: 60px;
+    padding: 12px 6px;
+}
+
+.btns a.create {
+
+    background-color: #24BB33;
+    box-shadow: 0px 0px 30px #24BB33;
+}
+
+.btns a.logout  {
+    background-color: #DE2F2F;
+    box-shadow: 0px 0px 30px #DE2F2F;
+}
+
+.btns a.close {
+    background-color: rgb(205, 164, 41);
+    box-shadow: 0px 0px 30px rgba(205, 164, 41, 0.308);
+}
+
+

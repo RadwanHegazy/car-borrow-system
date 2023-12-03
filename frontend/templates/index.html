@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية</title>
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
+</head>
+<body>
+
+
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+    
+    
+    <div class="container">
+
+        <form class="up" method="GET">
+            <input type="text" name="from" placeholder="من">
+            <i></i>
+            <input type="text" name="to" placeholder="الي">
+            <button type="submit">بحث</button>
+            <a href="{% url 'login' %}">تسجيل دخول السائقين</a>
+        </form>
+
+
+        
+        <div class="results">
+
+
+
+            <!-- loop session here -->
+            {% for session in sessions %}
+                <div class="card">
+                    
+                    <div class="col">
+                        <small>من</small>
+                        <p>{{session.from}}</p>
+                    </div>
+
+                    <div class="col">
+                        <small>الي</small>
+                        <p>{{session.to}}</p>
+                    </div>
+
+                    <div class="col">
+                        <small>رقم السيارة</small>
+                        <p>{{session.car_number}}</p>
+                    </div>
+
+                    <div class="col">
+                        <small>الاجرة</small>
+                        <p>{{session.price}}</p>
+                    </div>
+
+                    <button data-uuid="{{session.session_uuid}}" class="regsterbtn">احجز الان</button>
+
+                </div>
+            {% endfor %}
+
+                
+
+        </div>
+
+
+    </div>
+    
+    
+    <div class="overlayer {% if ticket %}ticket{% endif %}">
+
+        <form class="info" method="POST" id="f">
+            <input type="text" name="main_data" id="main_data" hidden>
+            <h1>الرجاء ادخال البيانات</h1>
+            <input id="customer_name" type="text" placeholder="ادخل اسمك بالكامل هنا">
+            <button type="button" >الحصول علي التذكرة الان</button>
+        </form>
+
+        <div class="ticket">
+            <h1>تذكرتك الخاصة</h1>
+            <img src="{{ticket}}" id="qrimg" alt="">
+        </div>
+        
+        <i class="close" id="close">x</i>
+
+    </div>
+
+
+    <script>
+
+        var register_btn = document.querySelectorAll('.regsterbtn');
+        var overlayer = document.querySelector('.overlayer');
+        let car_register_uuid;
+        var qr_img = document.getElementById('qrimg');
+        var main_data = document.getElementById('main_data');
+
+        register_btn.forEach(btn=>{
+            
+            btn.addEventListener('click',function(){
+                car_register_uuid = btn.dataset.uuid;
+                overlayer.classList.toggle('info')
+                
+            })
+        })
+
+
+        document.querySelector('form.info button').addEventListener('click',function(){
+            var customer_name = document.getElementById('customer_name');
+
+            if (customer_name.value){
+                
+                var ticket_data = `${customer_name.value}@${car_register_uuid}`;
+                
+                
+                // add this lines of code to the response
+                overlayer.classList.remove('info')
+                alert('جاري الحجز')
+                
+                main_data.value = ticket_data;
+                document.getElementById('f').submit();
+
+                overlayer.classList.add('ticket')
+                //qr_img.src = ''; // Set here the response url
+
+
+            }else{
+                alert('الرجاء ادخل اسمك')
+            }
+
+
+        })
+
+
+        document.querySelector('.close').addEventListener('click',function(){
+            overlayer.className = 'overlayer';
+        })
+
+        
+        if ("{{error}}")
+        {
+            alert('{{error}}')
+        }
+    </script>
+</body>
+</html>

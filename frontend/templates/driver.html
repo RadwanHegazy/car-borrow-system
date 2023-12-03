@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السائق | اسم السائق</title>
+    <link rel="stylesheet" href="{% static 'style/driver.css' %}">
+</head> 
+<body>
+    
+
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+
+
+    <form action="." method="POST">
+        <input type="text" id="c" name="customer" hidden>
+    </form>
+
+
+    <div class="container">
+
+
+        <div class="left">
+
+            <div class="win">
+                <div class="qrCode" id="scanner"></div>
+                <button type="button" id="scanBtn">تحقق</button>
+            </div>
+
+            <div class="win">
+                <img src="http://127.0.0.1:4444{{user.picture}}" alt="">
+                <p>@{{user.full_name}}</p>
+            </div>
+
+
+            <div class="btns">
+                <a href="{% url 'logout' %}" class="logout">تسجيل الخروج</a>
+                <a href="?session=create" class="create">انشاء جلسة</a>
+                <a href="?session=close" class="close">اغلاق الجلسات</a>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="right">
+            
+            <div class="cont">
+
+                <!-- loop sessions here -->
+                {% for session in user.sessions %}
+                    <div class="session">
+                        
+                        <div class="status {%if session.is_active%}active{%endif%}"></div>
+
+                        <div class="op">
+                            <p>تاريخ الجلسة  </p>
+                            <p>{{session.date}}</p>
+                        </div>
+                        
+                        <div class="op">
+                            <p>عدد الركاب  </p>
+                            <p>{{session.customers}}</p>
+                        </div>
+                        <div class="op">
+                            <p>اجمالي الاجرة  </p>
+                            <p>{{session.total_price}}</p>
+                        </div>
+
+
+                    </div>
+                {% endfor %}
+         
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script src="{% static 'js/html5-qrcode.min.js' %}"></script>
+    <script>
+        
+        function onScanSuccess(decodedText, decodedResult) {
+            // Handle on success condition with the decoded text or result.
+           var customer = decodedText;
+           
+           document.getElementById('c').value = customer;
+           document.querySelector('form').submit();
+
+            html5QrcodeScanner.clear();
+
+        }
+        
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "scanner", { fps: 10, qrbox: 200 });
+
+        var scan_btn = document.getElementById('scanBtn');
+
+        scan_btn.addEventListener('click',()=>{
+            html5QrcodeScanner.render(onScanSuccess);
+        })
+
+        if ("{{msg}}"){
+            alert("{{msg}}")
+        }
+    </script>
+
+
+
+</body>
+</html>

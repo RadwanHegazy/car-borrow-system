@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="{% static 'style/login.css' %}">
+</head> 
+<body>
+    
+
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+
+
+    <form class="container" method="POST">
+        {% csrf_token %}
+        <input type="text" name="phone" placeholder="رقم الهاتف">
+        <input type="password" name="password" placeholder="كلمة المرور">
+
+        <div class="btns">
+            <a href="{% url 'register' %}">انشاء حساب</a>
+            <button type="submit">تسجيل</button>
+        </div>
+        
+    </form>
+
+
+
+    <script>
+        if("{{errors}}"){
+            alert("{{errors}}")
+        }
+    </script>
+</body>
+</html>

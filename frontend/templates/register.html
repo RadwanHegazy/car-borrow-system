@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انشاء حساب</title>
+    <link rel="stylesheet" href="{% static 'style/register.css' %}">
+</head> 
+<body>
+    
+
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+
+
+    <form class="container" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="left">
+            <img id="imgView" src="{% static 'images/user.png' %}" alt="">
+            <input type="file" name="image" id="img" hidden>
+            <button id="imgBtn" type="button">تغير الصورة</button>
+        </div>
+
+        <div class="right">
+            
+            <input required name="full_name" type="text" placeholder="اسمك بالكامل">
+            <input required name="phone" type="text" placeholder="رقم الهاتف">
+            <input required name="car_number" type="text" placeholder="رقم السيارة">
+            
+            <input required name="from" type="text" class="half" placeholder="من">
+            <input required name="to" type="text" class="half" placeholder="الي">
+
+            <input required name="price" type="text" placeholder="الاجرة">
+
+            <input required name="maximum_users" type="number" placeholder="اقصي عدد للركاب">
+            <input required name="password" type="password" placeholder="كلمة المرور">
+        
+            <div class="btns">
+                <a href="{% url 'login' %}">تسجيل الدخول ؟</a>
+                <button>تسجيل</button>
+            </div>
+
+        </div>
+
+
+
+    </form>
+
+
+
+    <script>
+        var img = document.getElementById('img');
+        var imgBtn = document.getElementById('imgBtn');
+        var imgView = document.getElementById('imgView');
+
+        imgBtn.addEventListener('click',()=>{
+            img.click()
+        })
+
+        img.addEventListener('change',(e)=>{
+            var img_src = URL.createObjectURL(e.target.files[0]);
+            imgView.src = img_src;
+        })
+
+
+        if ('{{error}}'){
+            alert("{{error}}")
+        }
+    </script>
+
+</body>
+</html>
